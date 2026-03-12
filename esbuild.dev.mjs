@@ -4,7 +4,7 @@ async function main() {
   const esmBuild = await esbuild.context({
     entryPoints: ["./src/index.tsx"],
     bundle: true,
-    outfile: "www/index.dev.esm.js",
+    outfile: "./docs/index.dev.esm.js",
     sourcemap: true,
   });
 
@@ -13,7 +13,7 @@ async function main() {
   const esmReactBuild = await esbuild.context({
     entryPoints: ["./dev/esm-react-esbuild.tsx"],
     bundle: true,
-    outfile: "www/esm-react-esbuild.dev.js",
+    outfile: "./docs/esm-react-esbuild.dev.js",
     minify: true,
     sourcemap: true,
   });
@@ -21,8 +21,8 @@ async function main() {
   await esmReactBuild.watch();
 
   const { hosts, port } = await esmReactBuild.serve({
-    servedir: "www",
-    fallback: "www/index.html",
+    servedir: "docs",
+    fallback: "./docs/index.html",
   });
 
   console.log(`Serving app at http://${hosts[0]}:${port}`);
