@@ -27,7 +27,7 @@ async function main() {
   // 3. run esbuilds
   const esmBuild = await esbuild.build({
     entryPoints: ["./src/index.tsx"],
-    external: ["react", "react-dom"],
+    external: ["react", "react-dom", "@gri4d/griiiid"],
     format: "esm",
     bundle: true,
     outfile: distDir + "/esm/index.js",
