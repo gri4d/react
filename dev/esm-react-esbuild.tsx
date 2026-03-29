@@ -1,6 +1,40 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, createPortal } from "react-dom/client";
 import ReactGRi4D from "../src/index.tsx";
+
+function ItemComponent(text) {
+  return (
+    <div
+      style={{
+        border: "1px solid #999",
+        background: "lightblue",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1,
+        height: "100%",
+      }}
+    >
+      {text}
+    </div>
+  );
+}
+
+function GroupHeaderComponent(text) {
+  return (
+    <div
+      style={{
+        background: "#eee",
+        fontWeight: "bold",
+        padding: "5px 10px",
+        height: "100%",
+        boxSizing: "border-box",
+      }}
+    >
+      {text}
+    </div>
+  );
+}
 
 function App() {
   const [itemsPerGroup, setItemsPerGroup] = React.useState(100);
@@ -30,17 +64,8 @@ function App() {
     return {
       height: rowHeight,
       columns: numCols,
-      renderer: (item) => {
-        const el = document.createElement("div");
-        el.textContent = item.title;
-        el.style.border = "1px solid #999";
-        el.style.background = "lightblue";
-        el.style.display = "flex";
-        el.style.alignItems = "center";
-        el.style.justifyContent = "center";
-        el.style.flex = "1";
-        el.style.height = "100%";
-        return el;
+      renderer: (mountElement, item) => {
+        createPortal(<ItemComponent text={item.title} />, mountElement);
       },
     };
   }, [numCols, rowHeight]);
@@ -52,15 +77,8 @@ function App() {
 
     return {
       height: groupHeaderHeight,
-      renderer: (group) => {
-        const el = document.createElement("div");
-        el.textContent = group.title;
-        el.style.background = "#eee";
-        el.style.fontWeight = "bold";
-        el.style.padding = "5px 10px";
-        el.style.height = "100%";
-        el.style.boxSizing = "border-box";
-        return el;
+      renderer: (mountElement, group) => {
+        createPortal(<GroupHeaderComponent text={group.title} />, mountElement);
       },
     };
   }, [groupHeaderHeight, showGroupHeader]);
