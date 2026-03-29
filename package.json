@@ -6,12 +6,8 @@
   "author": "gri4d",
   "type": "module",
   "main": "dist/esm/index.js",
-  "files": [
-    "dist",
-    "package.json",
-    "README.md",
-    "LICENSE"
-  ],
+  "types": "dist/types/index.d.ts",
+  "files": ["dist", "package.json", "README.md", "LICENSE"],
   "scripts": {
     "start": "concurrently -r \"npm:dev:esbuild\" \"npm:dev:tsc\"",
     "dev:esbuild": "node ./esbuild.dev.mjs",
