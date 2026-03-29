@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "gri4d",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/esm/index.js",
   "files": ["dist", "package.json", "README.md", "LICENSE"],
   "scripts": {
     "start": "concurrently -r \"npm:dev:esbuild\" \"npm:dev:tsc\"",

@@ -27,13 +27,14 @@ async function main() {
   // 3. run esbuilds
   const esmBuild = await esbuild.build({
     entryPoints: ["./src/index.tsx"],
+    format: 'esm',
     bundle: true,
     outfile: distDir + "/esm/index.js",
     sourcemap: false,
     sourcesContent: false,
     minify: true,
   });
-  console.log(`3. Created ./${distDir}/index.js`);
+  console.log(`3. Created ./${distDir}/esm/index.js`);
 }
 
 main();
