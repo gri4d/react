@@ -1,12 +1,17 @@
 {
   "name": "@gri4d/react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "react component for @gri4d/griiiid",
   "license": "MIT",
   "author": "gri4d",
   "type": "module",
   "main": "dist/esm/index.js",
-  "files": ["dist", "package.json", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "start": "concurrently -r \"npm:dev:esbuild\" \"npm:dev:tsc\"",
     "dev:esbuild": "node ./esbuild.dev.mjs",
