@@ -2,18 +2,9 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import ReactGRi4D from "../src/index.tsx";
 
-const itemsPerGroup = 1000;
-const numGroups = 100;
-const totalItems = numGroups * itemsPerGroup;
-
-const myGroups = Array.from({ length: numGroups }).map((_, groupIndex) => ({
-  title: `Group ${groupIndex + 1}`,
-  items: Array.from({ length: itemsPerGroup }).map((_, itemIndex) => ({
-    title: `Item ${groupIndex * itemsPerGroup + itemIndex + 1}`,
-  })),
-}));
-
 function App() {
+  const [itemsPerGroup, setItemsPerGroup] = React.useState(100);
+  const [numGroups, setNumGroups] = React.useState(100);
   const [numCols, setNumCols] = React.useState(5);
   const [spacing, setSpacing] = React.useState(5);
   const [rowHeight, setRowHeight] = React.useState(200);
@@ -22,7 +13,18 @@ function App() {
   const [showGroupHeader, setShowGroupHeader] = React.useState(true);
   const [viewport, setViewport] = React.useState("window");
 
+  const totalItems = numGroups * itemsPerGroup;
+
   const elementViewportTestRef = React.useRef(null);
+
+  const groups = React.useMemo(() => {
+    return Array.from({ length: numGroups }).map((_, groupIndex) => ({
+      title: `Group ${groupIndex + 1}`,
+      items: Array.from({ length: itemsPerGroup }).map((_, itemIndex) => ({
+        title: `Item ${groupIndex * itemsPerGroup + itemIndex + 1}`,
+      })),
+    }));
+  }, [itemsPerGroup, numGroups]);
 
   const itemsRow = React.useMemo(() => {
     return {
@@ -93,6 +95,24 @@ function App() {
             fontWeight: 400,
           }}
         >
+          <label>itemsPerGroup:</label>
+          <input
+            type="number"
+            value={itemsPerGroup}
+            onChange={(e) => setItemsPerGroup(+e.target.value)}
+            min={1}
+            style={{ width: 50 }}
+          />
+
+          <label>numGroups:</label>
+          <input
+            type="number"
+            value={numGroups}
+            onChange={(e) => setNumGroups(+e.target.value)}
+            min={1}
+            style={{ width: 50 }}
+          />
+
           <label>numCols:</label>
           <input
             type="number"
@@ -180,7 +200,7 @@ function App() {
 
       <div style={{ marginBottom: 100 }}>
         <ReactGRi4D
-          groups={myGroups}
+          groups={groups}
           spacing={spacing}
           stickyTop={stickyTop}
           itemsRow={itemsRow}

@@ -136,7 +136,7 @@
                 type = type._init;
                 try {
                   return getComponentNameFromType(type(innerType));
-                } catch (x) {
+                } catch (x2) {
                 }
             }
           return null;
@@ -148,7 +148,7 @@
           try {
             var name = getComponentNameFromType(type);
             return name ? "<" + name + ">" : "<...>";
-          } catch (x) {
+          } catch (x2) {
             return "<...>";
           }
         }
@@ -1056,7 +1056,7 @@
                 type = type._init;
                 try {
                   return getComponentNameFromType(type(innerType));
-                } catch (x) {
+                } catch (x2) {
                 }
             }
           return null;
@@ -1090,7 +1090,7 @@
           try {
             var name = getComponentNameFromType(type);
             return name ? "<" + name + ">" : "<...>";
-          } catch (x) {
+          } catch (x2) {
             return "<...>";
           }
         }
@@ -1283,7 +1283,7 @@
   var import_react = __toESM(require_react(), 1);
 
   // node_modules/@gri4d/griiiid/dist/esm/index.js
-  var I = class {
+  var x = class {
     visibleRanges;
     constructor(e) {
       this.visibleRanges = [...e];
@@ -1324,12 +1324,12 @@
     }
     reset(e) {
       this.options = { stickyTop: 0, ...this.options, ...e };
-      let { groups: n, spacing: t, itemsRow: i, viewport: m, mountPoint: h, stickyTop: s = 0 } = this.options, { height: c, columns: d } = i, v = this.getViewportType() === 0, l = Math.max(0, s - h.offsetTop), R = [], r = 0;
+      let { groups: n, spacing: t, itemsRow: i, viewport: m, mountPoint: h, stickyTop: s = 0 } = this.options, { height: c, columns: u } = i, v = this.getViewportType() === 0, l = Math.max(0, s - h.offsetTop), R = [], r = 0;
       for (let o = 0; o < n.length; o++) {
         let p = r, w = r + this.getGroupTotalHeight(o);
         R.push({ top: p, bottom: w }), r = w;
       }
-      if (this.gridHeight = r > 0 ? r + t + (v ? l : s) : 0, this.#e = new I(R), this.gridHeight > G && console.warn(`\u26A0\uFE0F Virtual grid height (${this.gridHeight}px) exceeds safe scroll limit of ${G}px. Scrolling may behave incorrectly on some browsers, especially mobile.`), this.gridSizingElement || (this.wrapperElement = document.createElement("div"), this.wrapperElement.className = "gri4d-wrapper-element", this.wrapperElement.style.position = "relative", this.gridSizingElement = document.createElement("div"), this.gridSizingElement.className = "gri4d-grid-sizing-element", this.gridSizingElement.style.position = "relative", this.wrapperElement.appendChild(this.gridSizingElement), this.itemsViewportElement = document.createElement("div"), this.itemsViewportElement.className = "gri4d-items-viewport-element", this.gridSizingElement.appendChild(this.itemsViewportElement)), h.appendChild(this.wrapperElement), this.getViewportType() === 2) {
+      if (this.gridHeight = r > 0 ? r + t + (v ? l : s) : 0, this.#e = new x(R), this.gridHeight > G && console.warn(`\u26A0\uFE0F Virtual grid height (${this.gridHeight}px) exceeds safe scroll limit of ${G}px. Scrolling may behave incorrectly on some browsers, especially mobile.`), this.gridSizingElement || (this.wrapperElement = document.createElement("div"), this.wrapperElement.className = "gri4d-wrapper-element", this.wrapperElement.style.position = "relative", this.gridSizingElement = document.createElement("div"), this.gridSizingElement.className = "gri4d-grid-sizing-element", this.gridSizingElement.style.position = "relative", this.wrapperElement.appendChild(this.gridSizingElement), this.itemsViewportElement = document.createElement("div"), this.itemsViewportElement.className = "gri4d-items-viewport-element", this.gridSizingElement.appendChild(this.itemsViewportElement)), h.appendChild(this.wrapperElement), this.getViewportType() === 2) {
         let { height: o, width: p, className: w } = m;
         this.wrapperElement.style.height = typeof o == "number" ? `${o}px` : o, this.wrapperElement.style.overflow = "auto", p !== void 0 && (this.wrapperElement.style.width = typeof p == "number" ? `${p}px` : p), w !== void 0 && (this.wrapperElement.className = w);
       } else this.wrapperElement.style = "position: relative";
@@ -1339,7 +1339,7 @@
       for (let [o] of this.visibleGroups) this.visibleGroups.get(o)?.headerElement?.remove(), this.visibleGroups.delete(o);
       this.itemsViewportElement.innerHTML = "", this.viewportSizeObserver?.disconnect(), this.viewportSizeObserver = null, v || (this.viewportSizeObserver = new ResizeObserver((o) => {
         let { stickyTop: p, mountPoint: w } = this.options;
-        for (let E of o) this.itemsViewportElement.style.height = `calc(${E.contentRect.height}px - ${p}px)`;
+        for (let b of o) this.itemsViewportElement.style.height = `calc(${b.contentRect.height}px - ${p}px)`;
         this.update();
       }), this.viewportSizeObserver.observe(g)), this.update();
     }
@@ -1385,50 +1385,52 @@
       return e.top - t.top;
     }
     getGroupTotalHeight(e) {
-      let { groups: n, itemsRow: t, groupHeader: i, spacing: m } = this.options, { columns: h, height: s } = t, c = i ? i.height + m : 0, d = n[e], v = Math.ceil(d.items.length / h);
+      let { groups: n, itemsRow: t, groupHeader: i, spacing: m } = this.options, { columns: h, height: s } = t, c = i ? i.height + m : 0, u = n[e], v = Math.ceil(u.items.length / h);
       return c + (s + m) * v;
     }
     createGroupHeaderElement(e) {
       let { gridSizingElement: n } = this, { groups: t, groupHeader: i, spacing: m, mountPoint: h, stickyTop: s = 0 } = this.options;
       if (!i) return null;
-      let { height: c, renderer: d } = i, v = t[e], l = document.createElement("div");
-      return Object.assign(l.style, { position: "absolute", height: `${c}px`, zIndex: e + 1, width: "100%" }), l.appendChild(d(v, e)), l;
+      let { height: c, renderer: u } = i, v = t[e], l = document.createElement("div");
+      return Object.assign(l.style, { position: "absolute", height: `${c}px`, zIndex: e + 1, width: "100%" }), l.appendChild(u(v, e)), l;
     }
     createItemsRowElement(e, n) {
-      let { gridSizingElement: t } = this, { groups: i, itemsRow: m, spacing: h, mountPoint: s } = this.options, { height: c, columns: d, renderer: v } = m, l = i[e], R = `calc(${100 / d}% - ${h * ((d - 1) / d)}px)`, r = document.createElement("div");
+      let { gridSizingElement: t } = this, { groups: i, itemsRow: m, spacing: h, mountPoint: s } = this.options, { height: c, columns: u, renderer: v } = m, l = i[e], R = `calc(${100 / u}% - ${h * ((u - 1) / u)}px)`, r = document.createElement("div");
       Object.assign(r.style, { position: "absolute", height: `${c}px`, width: "100%", display: "flex" });
-      for (let g = 0; g < d; g++) {
-        let o = n * d + g;
+      for (let g = 0; g < u; g++) {
+        let o = n * u + g;
         if (o >= l.items.length) break;
-        let p = l.items[o], w = l.data?.[o], E = document.createElement("div");
-        Object.assign(E.style, { height: "100%", width: R, marginRight: `${g === d - 1 ? 0 : h}px` }), E.appendChild(v(p, o, w)), r.appendChild(E);
+        let p = l.items[o], w = l.data?.[o], b = document.createElement("div");
+        Object.assign(b.style, { height: "100%", width: R, marginRight: `${g === u - 1 ? 0 : h}px` }), b.appendChild(v(p, o, w)), r.appendChild(b);
       }
       return r;
     }
     update() {
-      let { wrapperElement: e, gridSizingElement: n, itemsViewportElement: t } = this, { mountPoint: i, groups: m, groupHeader: h, spacing: s, stickyTop: c = 0, viewport: d, itemsRow: v } = this.options, { height: l, columns: R } = v, r = h?.height || 0, g = this.getViewportType() === 0, o = Math.max(l, r) + s, p = this.getViewportRelativeTop(), w = this.getViewportRange(), E = w.top - o, z = w.bottom + o, V = g ? Math.max(0, c - i.offsetTop) : 0, y = Math.max(0, -p + c) - V - (g ? 0 : c);
+      let { wrapperElement: e, gridSizingElement: n, itemsViewportElement: t } = this, { mountPoint: i, groups: m, groupHeader: h, spacing: s, stickyTop: c = 0, viewport: u, itemsRow: v } = this.options, { height: l, columns: R } = v, r = h?.height || 0, g = this.getViewportType() === 0, o = Math.max(l, r) + s, p = this.getViewportRelativeTop(), w = this.getViewportRange(), b = w.top - o, z = w.bottom + o, V = g ? Math.max(0, c - i.offsetTop) : 0, y = Math.max(0, -p + c) - V - (g ? 0 : c);
       if (y *= this.scrollPosMultiplier, g) {
         let a = t.style.position;
         p <= 0 && a !== "fixed" ? t.style.position = "fixed" : p > 0 && a !== "sticky" && (t.style.position = "sticky");
       }
-      let D = this.#e.findFirstVisibleIndex(E), L = this.#e.findLastVisibleIndex(z);
-      for (let [a, u] of this.visibleGroups) if (a < D || a > L) {
-        let f = this.visibleGroups.get(a);
-        f && (f.headerElement && f.headerElement.remove(), f.visibleItemsRows.forEach((x) => {
-          x.remove();
+      let D = this.#e.findFirstVisibleIndex(b), L = this.#e.findLastVisibleIndex(z);
+      for (let [a, d] of this.visibleGroups) if (a < D || a > L) {
+        let E = this.visibleGroups.get(a);
+        E && (E.headerElement && E.headerElement.remove(), E.visibleItemsRows.forEach((I) => {
+          I.remove();
         }), this.visibleGroups.delete(a));
       }
       for (let a = D; a <= L; a++) {
-        let u = this.visibleGroups.get(a), { top: f, bottom: x } = this.#e.get(a), S = f + V + (g ? 0 : c), W = Math.max(0, f - y), O = 0;
-        x - y < r && (O = r - (x - y));
-        let C = 0;
-        y < f && (C = g ? 0 : V), u || (u = { headerElement: this.createGroupHeaderElement(a), visibleItemsRows: /* @__PURE__ */ new Map() }, this.visibleGroups.set(a, u), u.headerElement && t.appendChild(u.headerElement)), u.headerElement && (u.headerElement.style.transform = `translateY(${W - O + C}px)`);
-        let N = m[a], Y = Math.ceil(N.items.length / R), H = Math.max(0, Math.floor((E - S - (p < 0 ? 0 : r)) / (l + s))), k = Math.min(Y - 1, Math.ceil((z - S - (p < 0 ? 0 : r)) / (l + s)));
-        for (let [b, T] of u.visibleItemsRows) b >= H && b <= k || (T?.remove(), u.visibleItemsRows.delete(b));
-        let P = H * (l + s) + r + (r ? s : 0) + f - y;
-        for (let b = H; b <= k; b++) {
-          let T = u.visibleItemsRows.get(b);
-          T || (T = this.createItemsRowElement(a, b), t.appendChild(T), u.visibleItemsRows.set(b, T)), T.style.transform = `translateY(${P}px)`, P += l + s;
+        let d = this.visibleGroups.get(a), E = this.#e.get(a);
+        if (!E) continue;
+        let { top: I, bottom: S } = E, O = I + V + (g ? 0 : c), N = Math.max(0, I - y), C = 0;
+        S - y < r && (C = r - (S - y));
+        let k = 0;
+        y < I && (k = g ? 0 : V), d || (d = { headerElement: this.createGroupHeaderElement(a), visibleItemsRows: /* @__PURE__ */ new Map() }, this.visibleGroups.set(a, d), d.headerElement && t.appendChild(d.headerElement)), d.headerElement && (d.headerElement.style.transform = `translateY(${N - C + k}px)`);
+        let Y = m[a], B = Math.ceil(Y.items.length / R), H = Math.max(0, Math.floor((b - O - (p < 0 ? 0 : r)) / (l + s))), P = Math.min(B - 1, Math.ceil((z - O - (p < 0 ? 0 : r)) / (l + s)));
+        for (let [f, T] of d.visibleItemsRows) f >= H && f <= P || (T?.remove(), d.visibleItemsRows.delete(f));
+        let $ = H * (l + s) + r + (r ? s : 0) + I - y;
+        for (let f = H; f <= P; f++) {
+          let T = d.visibleItemsRows.get(f);
+          T || (T = this.createItemsRowElement(a, f), t.appendChild(T), d.visibleItemsRows.set(f, T)), T.style.transform = `translateY(${$}px)`, $ += l + s;
         }
       }
     }
