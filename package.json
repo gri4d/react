@@ -7,12 +7,7 @@
   "type": "module",
   "main": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
-  "files": [
-    "dist",
-    "package.json",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["dist", "package.json", "README.md", "LICENSE"],
   "scripts": {
     "start": "concurrently -r \"npm:dev:esbuild\" \"npm:dev:tsc\"",
     "dev:esbuild": "node ./esbuild.dev.mjs",
@@ -27,7 +22,7 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@gri4d/griiiid": "^2.0.0",
+    "@gri4d/griiiid": "^2.0.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   }
