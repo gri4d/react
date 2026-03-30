@@ -1,13 +1,14 @@
 import React from "react";
-import { createRoot, createPortal } from "react-dom/client";
+import { createRoot } from "react-dom/client";
+import { renderToString } from "react-dom/server";
 import ReactGRi4D from "../src/index.tsx";
 
-function ItemComponent(text) {
+function ItemComponent({ text }) {
   return (
     <div
       style={{
         border: "1px solid #999",
-        background: "lightblue",
+        background: "violet",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -20,7 +21,7 @@ function ItemComponent(text) {
   );
 }
 
-function GroupHeaderComponent(text) {
+function GroupHeaderComponent({ text }) {
   return (
     <div
       style={{
@@ -64,8 +65,8 @@ function App() {
     return {
       height: rowHeight,
       columns: numCols,
-      renderer: (mountElement, item) => {
-        createPortal(<ItemComponent text={item.title} />, mountElement);
+      renderer: (mount, item) => {
+        mount.innerHTML = renderToString(<ItemComponent text={item.title} />);
       },
     };
   }, [numCols, rowHeight]);
@@ -77,8 +78,10 @@ function App() {
 
     return {
       height: groupHeaderHeight,
-      renderer: (mountElement, group) => {
-        createPortal(<GroupHeaderComponent text={group.title} />, mountElement);
+      renderer: (mount, group) => {
+        mount.innerHTML = renderToString(
+          <GroupHeaderComponent text={group.title} />
+        );
       },
     };
   }, [groupHeaderHeight, showGroupHeader]);

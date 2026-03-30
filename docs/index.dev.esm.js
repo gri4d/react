@@ -1392,7 +1392,7 @@
       let { gridSizingElement: n } = this, { groups: t, groupHeader: i, spacing: m, mountPoint: h, stickyTop: s = 0 } = this.options;
       if (!i) return null;
       let { height: c, renderer: u } = i, v = t[e], l = document.createElement("div");
-      return Object.assign(l.style, { position: "absolute", height: `${c}px`, zIndex: e + 1, width: "100%" }), l.appendChild(u(v, e)), l;
+      return Object.assign(l.style, { position: "absolute", height: `${c}px`, zIndex: e + 1, width: "100%" }), u(l, v, e), l;
     }
     createItemsRowElement(e, n) {
       let { gridSizingElement: t } = this, { groups: i, itemsRow: m, spacing: h, mountPoint: s } = this.options, { height: c, columns: u, renderer: v } = m, l = i[e], R = `calc(${100 / u}% - ${h * ((u - 1) / u)}px)`, r = document.createElement("div");
@@ -1401,7 +1401,7 @@
         let o = n * u + g;
         if (o >= l.items.length) break;
         let p = l.items[o], w = l.data?.[o], b = document.createElement("div");
-        Object.assign(b.style, { height: "100%", width: R, marginRight: `${g === u - 1 ? 0 : h}px` }), b.appendChild(v(p, o, w)), r.appendChild(b);
+        Object.assign(b.style, { height: "100%", width: R, marginRight: `${g === u - 1 ? 0 : h}px` }), v(b, p, o, w), r.appendChild(b);
       }
       return r;
     }
@@ -1421,10 +1421,10 @@
       for (let a = D; a <= L; a++) {
         let d = this.visibleGroups.get(a), E = this.#e.get(a);
         if (!E) continue;
-        let { top: I, bottom: S } = E, O = I + V + (g ? 0 : c), N = Math.max(0, I - y), C = 0;
-        S - y < r && (C = r - (S - y));
-        let k = 0;
-        y < I && (k = g ? 0 : V), d || (d = { headerElement: this.createGroupHeaderElement(a), visibleItemsRows: /* @__PURE__ */ new Map() }, this.visibleGroups.set(a, d), d.headerElement && t.appendChild(d.headerElement)), d.headerElement && (d.headerElement.style.transform = `translateY(${N - C + k}px)`);
+        let { top: I, bottom: S } = E, O = I + V + (g ? 0 : c), N = Math.max(0, I - y), k = 0;
+        S - y < r && (k = r - (S - y));
+        let C = 0;
+        y < I && (C = g ? 0 : V), d || (d = { headerElement: this.createGroupHeaderElement(a), visibleItemsRows: /* @__PURE__ */ new Map() }, this.visibleGroups.set(a, d), d.headerElement && t.appendChild(d.headerElement)), d.headerElement && (d.headerElement.style.transform = `translateY(${N - k + C}px)`);
         let Y = m[a], B = Math.ceil(Y.items.length / R), H = Math.max(0, Math.floor((b - O - (p < 0 ? 0 : r)) / (l + s))), P = Math.min(B - 1, Math.ceil((z - O - (p < 0 ? 0 : r)) / (l + s)));
         for (let [f, T] of d.visibleItemsRows) f >= H && f <= P || (T?.remove(), d.visibleItemsRows.delete(f));
         let $ = H * (l + s) + r + (r ? s : 0) + I - y;
